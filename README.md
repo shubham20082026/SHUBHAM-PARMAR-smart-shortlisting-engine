@@ -36,10 +36,7 @@ the bonus "why is X ranked above Y" comparison tool.
 
 ---
 
-## How the matching actually works (what to tell the judges)
-
-This is the part judges will ask you to walk through. Here's the honest,
-literal architecture — no LLM is asked to "score this resume out of 100."
+## How the matching actually works 
 
 ### 1. Parsing (`src/parser.py`, `src/jd_parser.py`)
 - Resume and JD PDFs are converted to plain text with `pdfplumber`.
@@ -174,4 +171,4 @@ smart_shortlist/
 | Quality/sensibility of ranking | 20% | Weighted combination tuned to problem statement's own stated priorities |
 | Top-3 explanation accuracy/clarity | 20% | `explainer.py`, grounded in real matched/missing data + cited evidence |
 | Working end-to-end demo | 15% | `main.py` CLI + `app.py` Streamlit UI |
-| Bonus | 10% | Recruiter Q&A tool, robust fallback mode |
+| Bonus | 10% | JD bias/narrow-phrasing detector (`bias_detector.py`), free-text recruiter Q&A chat, OCR fallback for scanned resumes, section-header normalization |
