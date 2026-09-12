@@ -1,15 +1,3 @@
-"""
-Smart Shortlisting Engine - CLI entry point.
-
-Usage:
-    python main.py --jd data/Sample_JD.pdf --resumes data/resumes --out outputs/results.csv
-
-Put your JD PDF and resume PDFs in place, then run this. It prints the
-full ranking, matched/missing skills, semantic scores, and detailed
-explanations for the top 3 -- exactly what the judges will want walked
-through.
-"""
-
 import argparse
 import json
 import os
