@@ -1,4 +1,4 @@
-# Smart Shortlisting Engine
+# (nexorahackathonmitblr)Smart Shortlisting Engine
 
 Hybrid semantic + keyword resume ranker built for the InternLoom AI Hackathon
 (Manipal Institute of Technology).
