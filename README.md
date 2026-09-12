@@ -1,7 +1,35 @@
 # (nexorahackathonmitblr)Smart Shortlisting Engine
 
-Hybrid semantic + keyword resume ranker built for the InternLoom AI Hackathon
+Resume ranker built for the InternLoom AI Hackathon
 (Manipal Institute of Technology).
+
+## Project structure
+```
+smart_shortlist/
+├── main.py              # CLI: JD + resume folder -> ranked CSV/JSON + explanations
+├── app.py                # Streamlit demo UI (bonus: recruiter Q&A)
+├── requirements.txt
+├── data/
+│   ├── Sample_JD.pdf     # <- put your JD here
+│   └── resumes/*.pdf     # <- put your resumes here
+├── outputs/               # results.csv / results.json land here
+└── src/
+    ├── parser.py          # PDF -> text, text chunking
+    ├── jd_parser.py        # JD section + requirement-chunk splitting
+    ├── skills.py           # skill vocabulary, extraction, fuzzy matching
+    ├── semantic.py          # embeddings / TF-IDF fallback, cosine similarity
+    ├── scorer.py            # combines keyword + semantic into final ranking
+    └── explainer.py          # top-N explanation generation
+```
+
+## Rubric alignment
+| Criterion | Weight | Where it's addressed |
+|---|---|---|
+| Semantic + keyword matching | 35% | `skills.py` (keyword) + `semantic.py` (embeddings), combined in `scorer.py` |
+| Quality/sensibility of ranking | 20% | Weighted combination tuned to problem statement's own stated priorities |
+| Top-3 explanation accuracy/clarity | 20% | `explainer.py`, grounded in real matched/missing data + cited evidence |
+| Working end-to-end demo | 15% | `main.py` CLI + `app.py` Streamlit UI |
+| Bonus | 10% | JD bias/narrow-phrasing detector (`bias_detector.py`), free-text recruiter Q&A chat, OCR fallback for scanned resumes, section-header normalization |
 
 ## Quick start
 
@@ -144,31 +172,3 @@ grounded-in-data philosophy as the top-3 explanations.
   whole pipeline functional rather than crashing.
 
 ---
-
-## Project structure
-```
-smart_shortlist/
-├── main.py              # CLI: JD + resume folder -> ranked CSV/JSON + explanations
-├── app.py                # Streamlit demo UI (bonus: recruiter Q&A)
-├── requirements.txt
-├── data/
-│   ├── Sample_JD.pdf     # <- put your JD here
-│   └── resumes/*.pdf     # <- put your resumes here
-├── outputs/               # results.csv / results.json land here
-└── src/
-    ├── parser.py          # PDF -> text, text chunking
-    ├── jd_parser.py        # JD section + requirement-chunk splitting
-    ├── skills.py           # skill vocabulary, extraction, fuzzy matching
-    ├── semantic.py          # embeddings / TF-IDF fallback, cosine similarity
-    ├── scorer.py            # combines keyword + semantic into final ranking
-    └── explainer.py          # top-N explanation generation
-```
-
-## Rubric alignment
-| Criterion | Weight | Where it's addressed |
-|---|---|---|
-| Semantic + keyword matching | 35% | `skills.py` (keyword) + `semantic.py` (embeddings), combined in `scorer.py` |
-| Quality/sensibility of ranking | 20% | Weighted combination tuned to problem statement's own stated priorities |
-| Top-3 explanation accuracy/clarity | 20% | `explainer.py`, grounded in real matched/missing data + cited evidence |
-| Working end-to-end demo | 15% | `main.py` CLI + `app.py` Streamlit UI |
-| Bonus | 10% | JD bias/narrow-phrasing detector (`bias_detector.py`), free-text recruiter Q&A chat, OCR fallback for scanned resumes, section-header normalization |
