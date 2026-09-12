@@ -1,13 +1,3 @@
-"""
-Streamlit demo UI.
-
-Run with:  streamlit run app.py
-
-Lets you upload a JD PDF + a batch of resume PDFs, see the ranked
-shortlist with score breakdowns, read top-3 explanations, and (bonus
-feature) ask a natural-language question like "Why is X ranked above Y?"
-"""
-
 import os
 import re
 import tempfile
